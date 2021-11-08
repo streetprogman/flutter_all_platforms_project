@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_all_platforms_project/components/drawer_item.dart';
 import 'package:flutter_all_platforms_project/components/homepage_card.dart';
 import 'package:flutter_all_platforms_project/constants/color_constants.dart';
 import 'package:get/get.dart';
@@ -16,19 +17,24 @@ class HomePageScreen extends StatelessWidget {
           style: Get.textTheme.headline6,
         ),
       ),
-      drawer: Column(
-        children: [
-          Expanded(
-            child: ListView(
-              children: [
-                ListTile(),
-                ListTile(),
-                ListTile(),
-                ListTile(),
-              ],
-            ),
-          )
-        ],
+      drawer: Drawer(
+        child: Container(
+          color: ColorConstants.appBarBackground,
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    DrawerItem(text: "Сотрудники"),
+                    DrawerItem(text: "Склад"),
+                    DrawerItem(text: "История транзакций"),
+                    DrawerItem(text: "Настройки"),
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
       ),
       body: DefaultTextStyle(
         style: TextStyle(color: Colors.white),

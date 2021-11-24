@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class DrawerItem extends StatelessWidget {
   final text;
-  const DrawerItem({required this.text});
+  final pageLink;
+  const DrawerItem({required this.text, required this.pageLink});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.back();
+        Get.to(pageLink);
+      },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20),
         child: Container(

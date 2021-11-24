@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_all_platforms_project/components/drawer_item.dart';
-import 'package:flutter_all_platforms_project/components/homepage_card.dart';
+import 'package:flutter_all_platforms_project/app/modules/employees/views/employees_view.dart';
+import 'package:flutter_all_platforms_project/app/modules/history/views/history_view.dart';
+import 'package:flutter_all_platforms_project/app/modules/settings/views/settings_view.dart';
+import 'package:flutter_all_platforms_project/app/modules/storage/views/storage_view.dart';
+import 'package:flutter_all_platforms_project/components/common/DefaultScaffold.dart';
+import 'package:flutter_all_platforms_project/components/common/drawer_item.dart';
+import 'package:flutter_all_platforms_project/components/homepage/homepage_card.dart';
 import 'package:flutter_all_platforms_project/constants/color_constants.dart';
-import 'package:get/get.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: ColorConstants.appBarBackground,
-        title: Text(
-          "Предприятие Садко №1",
-          style: Get.textTheme.headline6,
-        ),
-      ),
-      drawer: Drawer(
+    return DefaultScaffold(
+      titleText: "Предприятие Садко №1",
+      scaffoldDrawer: Drawer(
         child: Container(
           color: ColorConstants.appBarBackground,
           child: Column(
@@ -25,10 +23,10 @@ class HomePageScreen extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    DrawerItem(text: "Сотрудники"),
-                    DrawerItem(text: "Склад"),
-                    DrawerItem(text: "История транзакций"),
-                    DrawerItem(text: "Настройки"),
+                    DrawerItem(text: "Сотрудники", pageLink: () => EmployeesView()),
+                    DrawerItem(text: "Склад", pageLink: () => StorageView()),
+                    DrawerItem(text: "История транзакций", pageLink: () => HistoryView()),
+                    DrawerItem(text: "Настройки", pageLink: () => SettingsView()),
                   ],
                 ),
               )
@@ -36,24 +34,14 @@ class HomePageScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: DefaultTextStyle(
-        style: TextStyle(color: Colors.white),
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [ColorConstants.scaffoldBackground1, ColorConstants.scaffoldBackground2])),
-          child: Column(
-            children: [
-              HomepageCard(
-                title: "Info title",
-                center: 0.8,
-                info: "Information",
-              )
-            ],
-          ),
-        ),
+      children: Column(
+        children: [
+          HomepageCard(
+            title: "Info title",
+            center: 0.8,
+            info: "Information",
+          )
+        ],
       ),
     );
   }

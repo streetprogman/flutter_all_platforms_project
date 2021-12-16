@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_all_platforms_project/components/text_form_fields.dart';
+import 'package:flutter_all_platforms_project/components/common/text_form_fields.dart';
 import 'package:flutter_all_platforms_project/controllers/login_controller.dart';
 import 'package:get/get.dart';
 

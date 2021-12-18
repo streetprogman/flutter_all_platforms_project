@@ -1,14 +1,36 @@
 class Employee {
-  final id;
-  final name;
-  final lastname;
-  final fatherName;
-  final department;
-  final position;
-  final salary;
-  final DateTime birthDate;
-  final photo;
+  late int employeeId;
+  late String firstName;
+  late String lastName;
+  late String birthDate;
+  late int salaryPerMonth;
+  late String position;
 
-  Employee(this.id, this.name, this.lastname, this.fatherName, this.department, this.position, this.salary,
-      this.birthDate, this.photo);
+  Employee(
+      {required this.employeeId,
+      required this.firstName,
+      required this.lastName,
+      required this.birthDate,
+      required this.salaryPerMonth,
+      required this.position});
+
+  Employee.fromJson(Map<String, dynamic> json) {
+    employeeId = json['employeeId'];
+    firstName = json['firstName'];
+    lastName = json['lastName'];
+    birthDate = json['birthDate'];
+    salaryPerMonth = json['salaryPerMonth'];
+    position = json['position'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['employeeId'] = this.employeeId;
+    data['firstName'] = this.firstName;
+    data['lastName'] = this.lastName;
+    data['birthDate'] = this.birthDate;
+    data['salaryPerMonth'] = this.salaryPerMonth;
+    data['position'] = this.position;
+    return data;
+  }
 }

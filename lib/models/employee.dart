@@ -1,13 +1,13 @@
 class Employee {
-  late int employeeId;
+  late int? employeeId;
   late String firstName;
   late String lastName;
-  late String birthDate;
+  late DateTime birthDate;
   late int salaryPerMonth;
   late String position;
 
   Employee(
-      {required this.employeeId,
+      {this.employeeId,
       required this.firstName,
       required this.lastName,
       required this.birthDate,
@@ -18,17 +18,17 @@ class Employee {
     employeeId = json['employeeId'];
     firstName = json['firstName'];
     lastName = json['lastName'];
-    birthDate = json['birthDate'];
+    birthDate = DateTime.parse(json['birthDate']);
     salaryPerMonth = json['salaryPerMonth'];
     position = json['position'];
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson(bool add) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['employeeId'] = this.employeeId;
+    if(!add)data['employeeId'] = this.employeeId;
     data['firstName'] = this.firstName;
     data['lastName'] = this.lastName;
-    data['birthDate'] = this.birthDate;
+    data['birthDate'] = this.birthDate.toString().substring(0,10)+"T00:00:00";
     data['salaryPerMonth'] = this.salaryPerMonth;
     data['position'] = this.position;
     return data;

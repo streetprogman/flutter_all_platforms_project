@@ -4,13 +4,14 @@ import 'package:flutter_all_platforms_project/components/common/styled_container
 
 class DefaultScaffold extends Scaffold {
   final titleText;
-  final children;
-  final Drawer? scaffoldDrawer;
-  const DefaultScaffold({required this.titleText, required this.children, this.scaffoldDrawer, Key? key})
+  final List<Widget>children;
+  final Widget? scaffoldDrawer;
+  final List<Widget>? actionsList;
+  const DefaultScaffold({required this.titleText, required this.children, this.scaffoldDrawer,this.actionsList, Key? key})
       : super(key: key);
 
   @override
-  PreferredSizeWidget? get appBar => DefaultAppBar(titleText: titleText);
+  PreferredSizeWidget? get appBar => DefaultAppBar(titleText: titleText,actionsList: actionsList,);
   @override
   Widget? get body => StyledContainer(children: children);
   @override

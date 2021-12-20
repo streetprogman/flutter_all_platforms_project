@@ -24,11 +24,25 @@ class HomepageScreen extends GetView<HomepageController> {
         child: Column(
           children: [
             HomepageCard(
-              title: "Info title",
-              center: 0.8,
-              info: "Information",
+              title: "Общая прибыль",
+              center: 11.2,
+              info: "Общая прибыль работы предприятия",
             ),
-            //TODO:Additional information
+            HomepageCard(
+              title: "Прибыль за последний месяц",
+              center: 22.3,
+              info: "",
+            ),
+            HomepageCard(
+              title: "Прибыль за прошлый месяц",
+              center: -11.1,
+              info: "",
+            ),
+            HomepageCard(
+              title: "Прогноз на следующий месяц",
+              center: 33.7,
+              info: "Ожидаемая прибыль в следующем месяце",
+            ),
           ],
         ),
       ),

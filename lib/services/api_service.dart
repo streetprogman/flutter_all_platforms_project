@@ -6,9 +6,13 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import '../services/auth_service.dart';
 
 class ApiService extends GetxService {
-  final AuthService authService = Get.find();
   static BaseOptions options = BaseOptions(
-    baseUrl: "env!.baseUrl",
+    baseUrl: "https://10.0.2.2:5001",
+    //   baseUrl: "https://localhost:5001",
+      headers: {
+      'Authorization':
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMDk5MWVlYi1iMWQ4LTQxMGItYTgzNy0wOGQ5YjBjODVjYTMiLCJqdGkiOiIxYjdiZmRlNi0zZjJiLTQ5ZjEtYTNlOC0yOGQyZDYxYjE5MzQiLCJleHAiOjE2NDA1MTUxOTIsImlzcyI6ImQxLmFyY2h5c29mdC5jb20ifQ.U4HgnYyCx_ykLX22Vc5JRhsDGocUZffyRGm5e3rG5hg'
+    }
   );
   Dio _withAuth = Dio(options);
   Dio _withoutAuth = Dio(options);
@@ -16,11 +20,11 @@ class ApiService extends GetxService {
 
   @override
   void onInit() {
-    _withAuth.interceptors.add(_localeInterceptor());
-    _withAuth.interceptors.add(_authInterceptor());
+    // _withAuth.interceptors.add(_localeInterceptor());
+    // _withAuth.interceptors.add(_authInterceptor());
     // _withAuth.interceptors.add(_loggerInterceptor());
 
-    _withoutAuth.interceptors.add(_localeInterceptor());
+    // _withoutAuth.interceptors.add(_localeInterceptor());
     // _withoutAuth.interceptors.add(_loggerInterceptor());
     super.onInit();
   }
@@ -36,17 +40,21 @@ class ApiService extends GetxService {
   Interceptor _authInterceptor() {
     return InterceptorsWrapper(
       onRequest: (options, handler) async {
-        final firebaseToken = authService.getFirebaseToken();
-        if (firebaseToken != null)
-          options.headers.addAll({
-            "firebase-token": '$firebaseToken',
-          });
-
-        final wallkitToken = authService.getWallkitToken();
-        if (wallkitToken != null)
-          options.headers.addAll({
-            "wallkit-token": '$wallkitToken',
-          });
+        options.headers.addAll({
+          'Authorization':
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyMDk5MWVlYi1iMWQ4LTQxMGItYTgzNy0wOGQ5YjBjODVjYTMiLCJqdGkiOiIxYjdiZmRlNi0zZjJiLTQ5ZjEtYTNlOC0yOGQyZDYxYjE5MzQiLCJleHAiOjE2NDA1MTUxOTIsImlzcyI6ImQxLmFyY2h5c29mdC5jb20ifQ.U4HgnYyCx_ykLX22Vc5JRhsDGocUZffyRGm5e3rG5hg'
+        });
+        // final firebaseToken = authService.getFirebaseToken();
+        // if (firebaseToken != null)
+        //   options.headers.addAll({
+        //     "firebase-token": '$firebaseToken',
+        //   });
+        //
+        // final wallkitToken = authService.getWallkitToken();
+        // if (wallkitToken != null)
+        //   options.headers.addAll({
+        //     "wallkit-token": '$wallkitToken',
+        //   });
 
         return handler.next(options); //continue
       },

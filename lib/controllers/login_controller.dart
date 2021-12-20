@@ -30,13 +30,7 @@ class LoginController extends GetxController {
     // focusNode.requestFocus();
   }
 
-  void login(int announcementId) async {
-    // box.write(Keys.conferenceId, announcementId);
-    loading.value = true;
-    if (!formKey.currentState!.validate()) {
-      loading.value = false;
-      return;
-    }
+  void login() async {
     authService.signInWithEmailAndPassword(email: emailFieldController.text, password: passwordFieldController.text);
   }
 

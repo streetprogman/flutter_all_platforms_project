@@ -26,7 +26,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   get: ^4.3.0
-  dio: ^4.0.0
+  dio: ^4.0.4
   get_storage: ^2.0.3
   firebase_auth: "^3.0.1"
   pretty_dio_logger: ^1.1.1

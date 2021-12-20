@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_all_platforms_project/models/employee.dart';
 
 class EmployeeCard extends StatelessWidget {
-  const EmployeeCard({Key? key}) : super(key: key);
+  final Employee employee;
+  const EmployeeCard({Key? key, required this.employee}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
